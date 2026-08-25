@@ -1,0 +1,6 @@
+document_id,short_name,journal,publication_year,doi,source_url,license,local_filename
+PROTO_001,CERTAIN,BMJ Open,2022,10.1136/bmjopen-2021-048628,https://bmjopen.bmj.com/content/12/1/e048628,CC BY 4.0,certain_protocol.pdf
+PROTO_002,CARE_STROKE,BMJ Open,2018,10.1136/bmjopen-2017-020098,https://bmjopen.bmj.com/content/8/5/e020098,CC BY 4.0,care_for_stroke_protocol.pdf
+PROTO_003,INTEGRA,BMC Family Practice,2019,10.1186/s12875-019-0916-9,https://link.springer.com/article/10.1186/s12875-019-0916-9,CC BY 4.0,integra_protocol.pdf
+PROTO_004,LISTEN,Trials,2023,10.1186/s13063-023-07090-w,https://link.springer.com/article/10.1186/s13063-023-07090-w,CC BY 4.0,listen_protocol.pdf
+PROTO_005,THP_TA,Trials,2023,10.1186/s13063-023-07581-w,https://link.springer.com/article/10.1186/s13063-023-07581-w,CC BY 4.0,thp_ta_protocol.pdf
