@@ -1,0 +1,5 @@
+question_id,classification,notes
+EVAL_001,CORRECT_ALTERNATIVE_EVIDENCE,Generated answer was correct and the cited alternative chunk independently contained the 3-month follow-up evidence.
+EVAL_027,UNSUPPORTED_EXTRA_DETAIL,"Core LISTEN intervention answer was correct, but the claim that sessions lasted up to 1 hour was not found in the cited evidence."
+EVAL_028,CORRECT_ALTERNATIVE_EVIDENCE,"Alternative cited chunks supported implementation scales, interviews, focus groups, and related process-evaluation details."
+EVAL_035,CORRECT_ALTERNATIVE_EVIDENCE,"The cited page-7 chunk independently stated the primary outcome, 3-month timing, and SCID measurement."
