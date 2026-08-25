@@ -153,3 +153,11 @@ def test_unsupported_extra_detail_fails():
     assert "1 hour" in result[
         "unsupported_critical_facts"
     ]
+def test_uploaded_protocol_citation_is_recognized():
+    citations = extract_citations(
+        "Supported result [UPLOAD_TEST_P005_C001]"
+    )
+
+    assert citations == [
+        "UPLOAD_TEST_P005_C001"
+    ]

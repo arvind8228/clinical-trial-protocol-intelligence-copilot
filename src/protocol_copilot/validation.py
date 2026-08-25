@@ -5,10 +5,11 @@ from protocol_copilot.config import (
 )
 
 
-# Match citations such as:
-# [PROTO_003_P005_C001]
+# Match citation IDs from both:
+# - Pre-indexed protocols: PROTO_003_P005_C001
+# - Uploaded protocols: UPLOAD_TEST_P005_C001
 CITATION_PATTERN = re.compile(
-    r"\[(PROTO_\d+_P\d+_C\d+)\]"
+    r"\[([A-Z][A-Z0-9_]*_P\d+_C\d+)\]"
 )
 
 
@@ -39,7 +40,7 @@ NUMBER_WORDS = {
 }
 
 
-# Normalize different forms of the same unit.
+# Normalize different ways of writing the same unit.
 UNIT_ALIASES = {
     "%": "percent",
     "percent": "percent",
@@ -112,7 +113,7 @@ CRITICAL_FACT_PATTERN = re.compile(
 
 def extract_citations(answer):
     """
-    Extract protocol chunk IDs cited in an answer.
+    Extract chunk IDs cited in a generated answer.
     """
 
     return CITATION_PATTERN.findall(
@@ -142,6 +143,7 @@ def validate_citations(
         }
 
 
+    # Extract all citations from the answer.
     cited_chunk_ids = extract_citations(
         answer
     )
@@ -165,7 +167,8 @@ def validate_citations(
     )
 
 
-    # A supported answer must contain at least one valid citation.
+    # A supported answer must contain at least one citation
+    # and every citation must come from retrieved evidence.
     citation_check_passed = (
         has_citations
         and all_citations_valid
@@ -248,7 +251,9 @@ def extract_critical_facts(text):
 
     # Remove duplicates while preserving order.
     return list(
-        dict.fromkeys(critical_facts)
+        dict.fromkeys(
+            critical_facts
+        )
     )
 
 
@@ -260,11 +265,12 @@ def validate_critical_fact_grounding(
     Check that important quantitative facts in the answer
     also appear in the chunks cited by that answer.
 
-    This is an additional grounding safeguard.
+    This is an additional deterministic grounding safeguard.
 
     It does not prove complete semantic correctness, but it
-    helps catch unsupported numerical details such as an
-    invented duration, participant count, or follow-up period.
+    helps detect unsupported numerical details such as an
+    invented duration, participant count, follow-up period,
+    session count, or visit count.
     """
 
     # An abstention contains no factual answer to validate.
@@ -277,7 +283,7 @@ def validate_critical_fact_grounding(
         }
 
 
-    # Find all chunks cited by the generated answer.
+    # Find the chunks cited by the generated answer.
     cited_chunk_ids = extract_citations(
         answer
     )
@@ -298,13 +304,13 @@ def validate_critical_fact_grounding(
     )
 
 
-    # Extract quantitative facts from the answer.
+    # Extract important quantitative facts from the answer.
     answer_facts = extract_critical_facts(
         answer
     )
 
 
-    # Extract quantitative facts from cited evidence.
+    # Extract the same kind of facts from cited evidence.
     evidence_facts = extract_critical_facts(
         cited_evidence_text
     )
@@ -315,7 +321,7 @@ def validate_critical_fact_grounding(
     )
 
 
-    # Any quantitative fact in the answer that is missing
+    # Any quantitative fact present in the answer but absent
     # from cited evidence is treated as unsupported.
     unsupported_facts = [
         fact
