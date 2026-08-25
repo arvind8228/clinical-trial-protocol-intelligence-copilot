@@ -188,12 +188,14 @@ def validate_citations(
 
 def normalize_number_words(text):
     """
-    Normalize written numbers and hyphenated expressions.
+    Normalize written numbers, thousands separators,
+    and hyphenated expressions.
 
     Examples:
     "seven hours" -> "7 hours"
     "7-h" -> "7 h"
     "3-month" -> "3 month"
+    "1,545 participants" -> "1545 participants"
     """
 
     normalized_text = (
@@ -201,6 +203,15 @@ def normalize_number_words(text):
         .replace("–", "-")
         .replace("—", "-")
         .replace("-", " ")
+    )
+
+
+    # Remove standard thousands separators from numbers.
+    # Example: "1,545 participants" -> "1545 participants"
+    normalized_text = re.sub(
+        r"\b\d{1,3}(?:,\d{3})+\b",
+        lambda match: match.group(0).replace(",", ""),
+        normalized_text,
     )
 
 
@@ -225,6 +236,7 @@ def extract_critical_facts(text):
     "7-h" -> "7 hour"
     "3 months" -> "3 month"
     "20 participants" -> "20 participant"
+    "1,545 participants" -> "1545 participant"
     """
 
     normalized_text = normalize_number_words(

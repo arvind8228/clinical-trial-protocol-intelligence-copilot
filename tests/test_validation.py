@@ -161,3 +161,9 @@ def test_uploaded_protocol_citation_is_recognized():
     assert citations == [
         "UPLOAD_TEST_P005_C001"
     ]
+def test_extract_critical_facts_handles_thousands_separator():
+    facts = extract_critical_facts(
+        "The trial will enrol 1,545 participants."
+    )
+
+    assert "1545 participant" in facts
