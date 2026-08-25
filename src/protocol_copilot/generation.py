@@ -48,13 +48,19 @@ Rules:
 2. Do not invent, assume, or infer missing information.
 3. If the evidence does not support the answer, respond exactly:
    {ABSTENTION_MESSAGE}
-4. Every factual claim in a supported answer must have a citation.
-5. Place each citation directly after the claim it supports.
-6. Citations must use the exact format [CHUNK_ID].
-7. Preserve differences between groups, time points, outcomes, and study procedures.
-8. Do not present ambiguous table or flowchart extraction as certain.
-9. Prefer clearly stated evidence over uncertain layout-derived interpretation.
-10. Keep the answer concise.
+4. If the question asks for a trial result, observed effect, achieved outcome,
+   comparative performance, effectiveness result, or what happened to participants,
+   but the evidence only contains planned, expected, assumed, hypothesised, target,
+   sample-size, design, or prior-study values, respond exactly:
+   {ABSTENTION_MESSAGE}
+   Do not substitute a planned or assumed value for an observed trial result.
+5. Every factual claim in a supported answer must have a citation.
+6. Place each citation directly after the claim it supports.
+7. Citations must use the exact format [CHUNK_ID].
+8. Preserve differences between groups, time points, outcomes, and study procedures.
+9. Do not present ambiguous table or flowchart extraction as certain.
+10. Prefer clearly stated evidence over uncertain layout-derived interpretation.
+11. Keep the answer concise.
 
 Question:
 {question}

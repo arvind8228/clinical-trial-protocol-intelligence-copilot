@@ -52,6 +52,24 @@ def test_grounded_prompt_requires_abstention():
     assert "Do not invent" in prompt
 
 
+def test_grounded_prompt_requires_result_abstention():
+    prompt = build_grounded_prompt(
+        question=(
+            "How much more weight did participants lose "
+            "with PROGROUP than with usual care?"
+        ),
+        context=(
+            "The prespecified between-group mean difference "
+            "used for the sample-size calculation was 3 kg."
+        ),
+    )
+
+    assert "observed effect" in prompt
+    assert "sample-size" in prompt
+    assert "Do not substitute a planned or assumed value" in prompt
+    assert "Insufficient Evidence" in prompt
+
+
 def test_grounded_prompt_requires_exact_citations():
     prompt = build_grounded_prompt(
         question="What was measured?",
