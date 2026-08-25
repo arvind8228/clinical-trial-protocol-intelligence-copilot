@@ -2,6 +2,8 @@
 
 A reliability-focused Retrieval-Augmented Generation (RAG) system for querying clinical-trial protocols using hybrid retrieval, cross-encoder reranking, evidence-grounded generation, verifiable citations, and fail-closed abstention.
 
+[Live Demo](https://clinical-trial-protocol-copilot.streamlit.app/)
+
 ![Supported answer example](docs/app_supported.png)
 
 ## Overview
@@ -33,7 +35,7 @@ The system supports two document modes.
 
 ### Demo protocols
 
-Five evaluated protocols are preprocessed into a persistent ChromaDB collection.
+Five evaluated protocols are preprocessed into tracked chunks. When a local persistent ChromaDB collection is available, the app reuses it. In a fresh deployment, the demo index is rebuilt from the tracked chunks using the same embedding model and cached for the running application.
 
 ### Uploaded protocols
 
@@ -517,25 +519,7 @@ It is not intended for:
 
 ## Project Status
 
-Completed:
+The core RAG system, evaluation pipeline, runtime PDF ingestion, reliability safeguards, automated tests, Streamlit interface, unseen-protocol evaluation, and public deployment are complete.
 
-- [x] PDF exploration and corpus validation
-- [x] Page-contained chunk engineering
-- [x] Semantic retrieval
-- [x] BM25 retrieval
-- [x] Reciprocal Rank Fusion
-- [x] Cross-encoder reranking
-- [x] Evidence-grounded generation
-- [x] Citation validation
-- [x] Critical quantitative-fact safeguard
-- [x] Fail-closed abstention
-- [x] Runtime PDF upload
-- [x] Streamlit application
-- [x] Automated tests
-- [x] Unseen-protocol evaluation
-- [x] Project packaging
-
-Remaining:
-
-- [ ] Public deployment
-- [ ] Final repository presentation
+**Live application:**  
+https://clinical-trial-protocol-copilot.streamlit.app/
