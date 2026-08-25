@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clinical-trial-protocol-intelligence-copilot"
+version = "0.1.0"
+description = "A reliability-focused RAG system for querying clinical-trial protocols with grounded citations and abstention."
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    "chromadb==1.5.9",
+    "langchain-text-splitters==1.1.2",
+    "numpy==2.5.2",
+    "openai==3.3.1",
+    "pandas==3.0.5",
+    "pypdf==6.16.2",
+    "python-dotenv==1.2.3",
+    "rank-bm25==0.2.2",
+    "sentence-transformers==6.0.0",
+    "streamlit==1.62.0",
+    "tiktoken==0.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
