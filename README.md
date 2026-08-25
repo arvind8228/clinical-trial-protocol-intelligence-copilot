@@ -117,9 +117,9 @@ Adding a wider candidate pool and cross-encoder reranking substantially improved
 | Metric | Baseline Hybrid | + Cross-Encoder Reranking | Improvement |
 |---|---:|---:|---:|
 | Hit@1 | 60.0% | 70.0% | +10.0 pp |
-| Hit@3 | 73.3% | 86.7% | +13.4 pp |
+| Hit@3 | 73.3% | 86.7% | +13.3 pp |
 | Hit@5 | 80.0% | 93.3% | +13.3 pp |
-| Hit@10 | 93.3% | 96.7% | +3.4 pp |
+| Hit@10 | 93.3% | 96.7% | +3.3 pp |
 
 The benchmark was used during retrieval development, so these results are treated as a controlled benchmark and ablation study rather than a pristine untouched final test set.
 
@@ -129,7 +129,7 @@ The 40-question evaluation also tested answer reliability.
 
 | Check | Result |
 |---|---:|
-| Supported questions answered | 30 / 30 |
+| Supported-question answer rate | 30 / 30 |
 | Unsupported questions correctly abstained | 10 / 10 |
 | Citation coverage | 30 / 30 |
 | Citation validity | 30 / 30 |
